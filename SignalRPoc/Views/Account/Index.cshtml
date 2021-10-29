@@ -1,0 +1,309 @@
+﻿@{
+    Layout = null;
+    var emailInvalid = ViewBag?.EmailInvalid ?? "";
+    var nameInvalid = ViewBag?.NameInvalid ?? "";
+    var email = ViewBag?.Email ?? "";
+    var name = ViewBag?.Name ?? "";
+    var errors = ViewBag?.Errors as List<string> ?? new List<string>();
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignalRPoc</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="shortcut icon" href="~/images/favicon.ico" />
+    <style>
+        .form-login {
+            margin: 0px;
+            padding: 0px;
+            background-color: white !important;
+            border: solid;
+            border-color: white;
+            border-radius: 30px;
+            width: 80vw;
+            height: 80vh;
+        }
+
+        .btn-login {
+            /*font-size: 26px;
+            box-shadow: whitesmoke 0px 0px 34px 0px;
+            padding: 5px 18px 10px 18px;
+            color: gray;
+            background-color: white;*/
+            font-size: 26px;
+            box-shadow: black 0px 6px 12px 0px;
+            padding: 5px 18px 10px 18px;
+            color: gray;
+            background-color: white;
+            border-radius: 16px;
+            font-weight: 500 !important;
+        }
+
+        .background-img {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            object-fit: fill;
+            display: block;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .fit-center {
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .blue-block {
+            background-color: rgb(63, 89, 157);
+            height: 100%;
+            width: 100%;
+            display: flex;
+            border-radius: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-card {
+            max-width: 50%;
+            max-height: 50%;
+            vertical-align: middle;
+            display: table-cell;
+        }
+
+        .img-top {
+            width: 50%;
+        }
+
+        .box-login {
+            height: 70%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px !important;
+        }
+
+        .full-height {
+            height: 100% !important;
+        }
+
+        .width-height-full {
+            width: 100%;
+            height: 100%;
+        }
+
+        .box-info-container {
+            display: contents;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .box-info {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .box-info-content {
+            justify-content: center;
+            display: grid;
+            color: slategray;
+        }
+
+            .box-info-content p {
+                padding: 0px;
+                margin: 0px;
+            }
+
+        .ht-50 {
+            height: 50%;
+        }
+
+        .ht-100 {
+            height: 100%;
+        }
+
+        .ht-10 {
+            height: 10%;
+        }
+
+        .ht-90 {
+            height: 90%;
+            display: table;
+        }
+
+        .block-left {
+            justify-content: center;
+            display: table-cell;
+            width: 100%;
+        }
+
+        .block-img {
+            justify-content: center;
+            display: flex;
+        }
+
+        .modal {
+            z-index: 9999999;
+        }
+
+        .modal-content {
+            border: solid;
+            border-color: white;
+            border-radius: 30px;
+            box-shadow: black 0px 0px 13px 0px;
+        }
+
+        .btn-secondary {
+            background-color: rgb(63, 89, 157);
+            box-shadow: black 2px 2px 10px 0px;
+        }
+
+        .modal-header, .modal-footer {
+            border: none !important;
+        }
+
+        h4.info {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <img class="background-img" src="~/images/background.png" />
+    <div class="container high">
+        <div class="justify-content-center high">
+            <div class="fit-center">
+                <div class="form-login high">
+                    <div class="row justify-content-center full-height">
+
+                        <div class="col-12 col-sm-4 col-md-6 col-xl-6">
+
+                            <div class="row ht-100">
+                                <div class="col-12 ht-10">
+                                    <div>
+                                        <img class="img-top" src="~/images/logo horizontal.png" />
+                                    </div>
+                                </div>
+                                <div class="col-12 ht-90">
+                                    <div class="box-info-container">
+                                        <div class="box-info">
+                                            <div class="box-info-content">
+                                                <p>
+                                                    <h4>Olá</h4>
+                                                </p>
+                                                <p>
+                                                    <h4>Seja bem vindo</h4>
+                                                </p>
+                                                <p>
+                                                    <h4>ao chat em tempo real</h4>
+                                                </p>
+                                                <p>
+                                                    <h4>Com <a target="_blank" href="https://github.com/SignalR/SignalR/">SignalR</a>.</h4>
+                                                </p>
+                                                <br />
+                                                <p>
+                                                    <h4>Baseado neste <a target="_blank" href="https://www.treinaweb.com.br/blog/aplicacoes-em-tempo-real-com-asp-net-core-signalr">post</a>.</h4>
+                                                </p>
+                                                <p>
+                                                    <h4>Código fonte está disponível </h4>
+                                                    <h4>Em <a target="_blank" href="https://gitlab.com/domvsit/poc-net-signalr">poc-net-signalr</a>.</h4>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-8 col-md-6 col-xl-6">
+                            <div class="blue-block">
+                                <table class="width-height-full">
+                                    <tbody>
+                                        <tr class="ht-50">
+                                            <td class="block-left">
+                                                <div class="block-img">
+                                                    <img class="img-card" src="~/images/aside-logo.png" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="ht-50">
+                                            <td>
+                                                <div class="box-login">
+                                                    <a class="btn btn-login" href="/Account/LoginExternal">
+                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" viewBox="0 0 48 48" class="abcRioButtonSvg">
+                                                            <g>
+                                                                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                                                                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                                                                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                                                                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                                                                <path fill="none" d="M0 0h48v48H0z"></path>
+                                                            </g>
+                                                        </svg>
+                                                        Login com Google
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="msgModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div id="msgModalText" class="col-12">
+                            <p>
+                                <h4 class="info">Texto aqui</h4>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(() => {
+            setTimeout(() => {
+                @if (errors?.Any() ?? false)
+                {
+                    var html = string.Join("",errors.Select(a => $"<p><H4 class=\"info\">{a}</H4></p>"));
+                    @Html.Raw($"$('#msgModalText').html('{html}');\n");
+                    @Html.Raw("$('#msgModal').modal('show');");
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>

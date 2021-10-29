@@ -1,0 +1,102 @@
+﻿@{
+    var user = ViewBag.User as UserSession;
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SignalRPoc</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="shortcut icon" href="~/images/favicon.ico" />
+    <style>
+        .right-menu {
+            justify-content: end;
+        }
+
+        .container-full {
+            position: absolute;
+            max-width: 100% !important;
+            left: 0px;
+            right: 0px;
+            display: block;
+            bottom: 56px;
+            top: 62px;
+        }
+
+        .full-height {
+            height: 100% !important;
+        }
+
+        .img-avatar-login {
+            border: solid;
+            border-width: 1px;
+            border-color: gray;
+            border-radius: 120px;
+            width: 33px;
+            height: 33px;
+            box-shadow: grey 3px 3px 12px 5px;
+        }
+
+        .pd-user {
+            padding: 0px 14px 0px 2px;
+        }
+
+        .li-out {
+            margin-top: 2px;
+        }
+
+        .header-info {
+            display: contents !important;
+            width: 100%;
+        }
+
+        .li-out label {
+            cursor: pointer;
+        }
+    </style>
+    @RenderSection("style", false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container header-info">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SignalRPoc</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1 right-menu">
+                        <li class="pd-user">
+                            <img class="img-avatar-login" src="@user.Image" />
+                            <label>@user.Email</label>
+                        </li>
+                        <li class="li-out">
+                            <a href="/Account/Logoof">
+                                <label>Sair</label>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container container-full">
+        <main role="main" class="pb-3 full-height">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; @DateTime.Now.Year - SignalRPoc - Domvs IT
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

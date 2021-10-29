@@ -1,0 +1,453 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    var user = ViewBag.User as UserSession;
+}
+
+@section style{
+    <style>
+        .box-contacts {
+            overflow-y: auto;
+            padding: 10px;
+            overflow-x: hidden;
+            direction: rtl;
+            align-content: start;
+            width: 100%;
+            height: 100%;
+        }
+
+        .box-contact {
+            border: solid;
+            border-width: 1px;
+            border-color: gray;
+            border-radius: 2px 16px 16px 2px;
+            box-shadow: grey 8px 9px 19px -5px;
+            margin: 4px;
+            padding: 6px 1px 6px 6px;
+            text-align: left;
+            height: fit-content;
+            direction: ltr;
+        }
+
+            .box-contact:hover {
+                border: solid;
+                border-width: 1px;
+                border-color: gray;
+                border-radius: 2px 16px 16px 2px;
+                box-shadow: grey 8px 9px 19px -5px;
+                margin: 4px;
+                padding: 12px;
+                text-align: right;
+                background-color: lightcyan;
+                font-weight: bold;
+                direction: ltr;
+            }
+
+            .box-contact:active {
+                border: solid;
+                border-width: 1px;
+                border-color: gray;
+                border-radius: 2px 16px 16px 2px;
+                box-shadow: grey 8px 9px 19px -5px;
+                margin: 4px;
+                padding: 12px;
+                text-align: right;
+                background-color: darkcyan;
+                font-weight: bold;
+                direction: ltr;
+            }
+
+        .lbl-transp {
+            color: lightgray;
+        }
+
+        .lbl-message {
+            color: gray;
+            color: gray;
+            word-break: break-all;
+        }
+
+        .box-chat {
+            border: solid;
+            border-width: 1px;
+            border-color: gray;
+            border-radius: 16px 2px 2px 16px;
+            box-shadow: grey 8px 9px 19px -5px;
+            margin: 0px;
+            padding: 0px 26px 0px 0px;
+            font-weight: bold;
+            height: 100%;
+            align-content: end;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: -webkit-box;
+            justify-content: end;
+            width: 100%;
+        }
+
+        .input-cst {
+            width: 100%;
+            border-left: none;
+            border-top: none;
+            border-right: none;
+            border-bottom: solid;
+            border-color: gray;
+            border-bottom-color: gray;
+            border-width: 2px;
+            outline: none;
+        }
+
+        .box-btn1 {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+        .box-btn2 {
+            display: table-cell;
+            vertical-align: middle;
+            width: 100%;
+        }
+
+        .btn-success {
+            width: 100%;
+        }
+
+        .box-send {
+            border: solid;
+            border-width: 1px;
+            border-color: gray;
+            border-radius: 60px 2px 2px 60px;
+            box-shadow: grey 8px 9px 19px -5px;
+            margin: 8px 8px 8px 20px;
+            padding: 4px;
+            text-align: right;
+            height: fit-content;
+            width: 100%;
+        }
+
+        .box-received {
+            border: solid;
+            border-width: 1px;
+            border-color: gray;
+            border-radius: 2px 60px 60px 2px;
+            box-shadow: grey 8px 9px 19px -5px;
+            margin: 8px 20px 8px 8px;
+            padding: 4px;
+            text-align: left;
+            height: fit-content;
+            width: 100%;
+        }
+
+        .sender-box {
+            border: solid;
+            border-width: 1px;
+            border-color: gray;
+            border-radius: 16px;
+            box-shadow: grey 8px 9px 19px -5px;
+            margin: 0px;
+        }
+
+        .sender-txt {
+            padding: 4px;
+            margin: 18px 0px 0px 0px;
+        }
+
+        .img-avatar {
+            border: solid;
+            border-width: 1px;
+            border-color: gray;
+            border-radius: 120px;
+            width: 33px;
+            height: 33px;
+            box-shadow: grey 3px 3px 12px 5px;
+        }
+
+        .imgx {
+            padding: 4px;
+            margin: 1px;
+        }
+
+        .mrg-zero {
+            margin: 0px !important;
+            display: flex;
+        }
+
+        .texts {
+            word-break: break-all;
+        }
+
+        .text-center {
+            height: 100%;
+        }
+
+        .width-height-full {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ht-8 {
+            height: 8%;
+        }
+
+        .ht-18 {
+            width: 18% !important;
+        }
+
+        .ht-14 {
+            width: 14% !important;
+        }
+
+        .ht-82 {
+            width: 82% !important;
+        }
+
+        .ht-full-heigth {
+            height: 100%;
+        }
+    </style>
+}
+
+<div class="text-center">
+    <input id="txtName" type="hidden" value="@user.Email"/>
+    <input id="txtImage" type="hidden" value="@user.Image"/>
+    <table class="width-height-full">
+        <tbody>
+            <tr class="ht-full-heigth">
+                <td>
+                    <table class="width-height-full">
+                        <tbody>
+                            <tr>
+                                <td class="ht-18">
+                                    <div id="contactsBox" class="box-contacts">
+                                        <div id="templateItemDaLista" class="col-12 box-contact" data-email="[[name]]">
+                                            <div class="row mrg-zero">
+                                                <div class="col-3">
+
+                                                    <div class="imgx">
+                                                        <img class="img-avatar" src="[[profileImage]]" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="texts">
+                                                        <label class="lbl-transp">[[name]]</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="ht-82">
+                                    <div id="boxChatMessages" class="row box-chat">
+                                        <div id="boxSend" class="box-send [[guid]]">
+                                            <h6>[[[dateformat]] - <strong>Eu</strong> ]</h6>
+                                            <label class="lbl-message">[[message]]</label>
+                                        </div>
+                                        <div id="boxReceived" class="box-received [[guid]]">
+                                            <h6>[[[[dateformat]] - <strong>[[username]]</strong> ]</h6>
+                                            <label class="lbl-message">[[message]]</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr class="ht-14">
+                <td>
+                    <div class="row sender-box">
+                        <div class="col-10">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <textarea id="txtSend" placeholder="Escreva sua mensagem aqui..." class="input-cst sender-txt"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="box-btn1">
+                                <div class="box-btn2">
+                                    <button id="btnSend" class="btn btn-success">ENVIAR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    @*
+        //rodar se o signalR der erro.
+        dotnet dev-certs https --clean
+        dotnet dev-certs https --trust
+    *@
+    <script src="~/lib/aspnet/signalr/dist/browser/signalr.min.js"></script>
+    <script>
+        function guid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function validateEmail($email) {
+            var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+            return emailReg.test($email);
+        }
+
+        $(document).ready(function () {
+            var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+            connection.on("ReceiveMessage", function (user, message, date) {
+                signalr.SignalRReceive(user, message, date);
+            });
+            connection.on("NewUserArrived", function (user, image) {
+                signalr.NewUserArrived(user, image);
+            });
+            connection.on("UserHasExited", function (user) {
+                signalr.UserHasExited(user);
+            });
+            connection.on("ChatHistory", function (messages) {
+                signalr.ChatHistory(messages);
+            });
+            connection.start().then(function () {
+            }).catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            var signalr = {
+                SignalRSend: function (user, message, date) {
+                    connection.invoke("SendMessage", user, message, date).catch(function (err) {
+                        return console.error(err.toString());
+                    });
+                },
+                SignalRLogin: function (user, image) {
+                    connection.invoke("Login", user, image).catch(function (err) {
+                        return console.error(err.toString());
+                    });
+                },
+                SignalRReceive: function (user, message, date) {
+                    alert('não implementado');
+                },
+                NewUserArrived: function (user, image) {
+                    alert('não implementado');
+                },
+                UserHasExited: function (user) {
+                    alert('não implementado');
+                },
+                ChatHistory: function (messages) {
+                    alert('não implementado');
+                }
+            };
+
+            var emailUser = "";
+            var image = "";
+            var templateItemDaLista = $('#templateItemDaLista').get(0).outerHTML;
+            var templateBoxSend = $('#boxSend').get(0).outerHTML;
+            var templateBoxReceived = $('#boxReceived').get(0).outerHTML;
+            $('#contactsBox').html('');
+            $('#boxChatMessages').html('');
+
+            function appendUser(id, emailUser, text, image) {
+                var newitem = templateItemDaLista.replace('[[name]]', emailUser).replace('[[name]]', emailUser).replace('[[profileImage]]', image);
+                $('#contactsBox').append(newitem);
+            }
+
+            function appendMessage(id, date, message, isSend, sender) {
+                var template = isSend === true ? templateBoxSend : templateBoxReceived;
+                var newitem = template.replace('[[dateformat]]', date).replace('[[message]]', message).replace('[[guid]]', id).replace('[[username]]', sender);
+                $('#boxChatMessages').append(newitem);
+                var objDiv = document.getElementById("boxChatMessages");
+                objDiv.scrollTop = objDiv.scrollHeight;
+            }
+
+            function stayOnline() {
+                emailUser = $('#txtName').val();
+                image = $('#txtImage').val();
+                $('#txtName').attr('disabled', 'disabled');
+                signalr.SignalRLogin(emailUser, image);
+            }
+
+            $('#btnStayOnline').on('click', function () {
+                stayOnline();
+            });
+
+            signalr.SignalRReceive = function (user, message, date) {
+                var guidNew = guid();
+                if (user !== emailUser) {
+                    appendMessage(guidNew, date, message, false, user);
+                } else {
+                    appendMessage(guidNew, date, message, true, 'Eu');
+                }
+
+                var first = $('#contactsBox').children().first();
+                if (first) {
+                    var exists = $('#contactsBox').find('[data-email="' + user + '"]').get(0);
+                    if (exists) {
+                        $(exists).insertBefore(first);
+                        $(exists).animate({ borderWidth: "10px" }, 300, function () {
+                            $(exists).animate({ borderWidth: "1px" }, 500);
+                        });
+                    }
+                }
+            };
+
+            signalr.NewUserArrived = function (user, image) {
+                var exists = $('#contactsBox').find('[data-email="' + user + '"]').get(0);
+                if (exists) {
+                    $(exists).animate({ borderWidth: "10px" }, 300, function () {
+                        $(exists).animate({ borderWidth: "1px" }, 500);
+                    });
+                } else {
+                    appendUser(guid(), user, '[NOVO]', image);
+                }
+            };
+
+            signalr.UserHasExited = function (user) {
+                var exists = $('#contactsBox').find('[data-email="' + user + '"]').get(0);
+                if (exists) {
+                    $(exists).remove();
+                }
+            };
+
+            signalr.ChatHistory = function (messages) {
+                if (messages) {
+                    $.each(messages, function (index, message) {
+                        var guidNew = guid();
+                        if (message.emailSender !== emailUser) {
+                            appendMessage(guidNew, message.date, message.message, false, message.emailSender);
+                        } else {
+                            appendMessage(guidNew, message.date, message.message, true, 'Eu');
+                        }
+                    });
+                }
+            };
+
+            function send() {
+                var message = $('#txtSend').val();
+                $('#txtSend').val('');
+                if (message.length <= 1) {
+                    return;
+                }
+                var date = new Date().toLocaleString("pt-BR");
+                var guidNew = guid();
+                appendMessage(guidNew, date, message, true, 'Eu');
+                signalr.SignalRSend(emailUser, message, date);
+            }
+
+            $("#txtSend").keyup(function (e) {
+                if (e.which == 13) {
+                    send();
+                }
+            });
+            $('#btnSend').on('click', function () {
+                send();
+            });
+
+            setTimeout(function () {
+                stayOnline();
+            }, 1000);
+        });
+    </script>
+}
