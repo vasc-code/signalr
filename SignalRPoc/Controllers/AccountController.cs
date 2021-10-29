@@ -107,10 +107,5 @@ namespace SignalRPoc.Controllers
                 return View("Index");
             }
         }
-
-        public IActionResult SignalR()
-        {
-            return View();
-        }
     }
 }
