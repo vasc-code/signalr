@@ -79,14 +79,14 @@ namespace SignalRPoc.Controllers
                 var user = GoogleLoginHelper.GetGoogleLoginUserInfo("Account/BackLogin", HttpContext.Request);
                 if (user != null)
                 {
-                    if (!user.Email.Contains("@domvsit.com.br"))
-                    {
-                        ViewBag.Errors = new List<string>()
-                        {
-                            "Faça login com seu e-mail @domvsit.com.br"
-                        };
-                        return View("Index");
-                    }
+                    //if (!user.Email.Contains("@domvsit.com.br"))
+                    //{
+                    //    ViewBag.Errors = new List<string>()
+                    //    {
+                    //        "Faça login com seu e-mail @domvsit.com.br"
+                    //    };
+                    //    return View("Index");
+                    //}
                     HttpContext.SetUser(user);
                     HttpContext.SetUserSession(new UserSession(user.Email, user.FirstName + " " + user.LastName, user.Image64));
                 }
