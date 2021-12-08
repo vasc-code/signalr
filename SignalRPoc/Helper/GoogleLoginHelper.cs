@@ -102,18 +102,11 @@ namespace SignalRPoc.Helper
             if (context != null)
             {
                 var isLocalHost = context.Connection.LocalPort != 80;
-                if (!isLocalHost)
-                {
-                    appPath = "https://chamanopedido.com.br";
-                }
-                else
-                {
-                    appPath = string.Format("{0}://{1}{2}",
-                                            context.Request.Scheme,
-                                            context.Request.Host.Host,
-                                            context.Connection.LocalPort == 80 ? string.Empty : ":" + context.Connection.LocalPort
-                                            );
-                }
+                appPath = string.Format("{0}://{1}{2}",
+                                        context.Request.Scheme,
+                                        context.Request.Host.Host,
+                                        context.Connection.LocalPort == 80 ? string.Empty : ":" + context.Connection.LocalPort
+                                        );
             }
             if (!appPath.EndsWith("/"))
             {
